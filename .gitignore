@@ -30,3 +30,6 @@ cmatrix.exe
 *.core
 CMakeCache.txt
 CMakeFiles/
+ncurses-6.4
+build_android
+.DS_Store

@@ -93,6 +93,10 @@ int *updates = NULL; /* What does this do again? */
 volatile sig_atomic_t signal_status = 0; /* Indicates a caught signal */
 #endif
 
+#if defined(__ANDROID__) && defined(__aarch64__)
+__attribute__((aligned(64))) __thread char cmatrix_tls_align64;
+#endif
+
 int va_system(char *str, ...) {
 
     va_list ap;
@@ -457,7 +461,9 @@ int main(int argc, char *argv[]) {
             exit(EXIT_FAILURE);
         set_term(ttyscr);
     } else
+    {
         initscr();
+    }
     savetty();
     nonl();
 #ifdef _WIN32
